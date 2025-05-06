@@ -56,6 +56,7 @@ impl ThreadPool {
         }
     }
 
+    /// Sends the given function f to a thread in the thread pool to be executed
     pub fn execute<F>(&self, f: F)
     where
         F: FnOnce() + Send + 'static,
