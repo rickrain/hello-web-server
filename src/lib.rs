@@ -2,7 +2,19 @@ use std::{
     sync::{Arc, Mutex, mpsc},
     thread::{self},
 };
-
+/// Struct ThreadPool
+///
+/// Examples
+///
+/// ```rust
+/// use hello_web_server::ThreadPool;
+///
+/// // Create a thread pool with 4 threads
+/// let thread_pool = ThreadPool::new(4);
+///
+/// // Perform this math operation in a separate thread
+/// thread_pool.execute(|| { 2 + 2; } );
+/// ```
 pub struct ThreadPool {
     workers: Vec<Worker>,
     sender: Option<mpsc::Sender<Job>>,
