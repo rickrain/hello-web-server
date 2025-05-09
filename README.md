@@ -1,3 +1,5 @@
+[![Rust](https://github.com/rickrain/hello-web-server/actions/workflows/rust.yml/badge.svg)](https://github.com/rickrain/hello-web-server/actions/workflows/ci.yml)
+
 # Multithreaded Web Server
 
 This is my implementation of the final project from [The Rust Programming Language](https://doc.rust-lang.org/book/) book. It is a primitive multithreaded web server that has two valid routes; `/` and `/sleep`. Both routes will return the text in `hello.html`, but the `/sleep` will sleep for 5 seconds before returning the response. Any other route requested is unknown to this web server and will therefore return the text in `404.html`.
