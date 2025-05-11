@@ -55,28 +55,6 @@ impl ThreadPool {
         }
     }
 
-    /// Creates a new ThreadPool
-    ///
-    /// The capacity is the number of threads in the pool.
-    ///
-    /// # Errors
-    ///
-    /// `PoolCreationError` if capacity is zero.
-    pub fn build(capacity: usize) -> Result<ThreadPool, PoolCreationError> {
-        Self::new(capacity)
-    }
-
-    /// Sends the given function f to a thread in the thread pool to be executed
-    pub fn execute<F>(&self, f: F)
-    where
-        F: FnOnce() + Send + 'static,
-    {
-        let job = Box::new(f);
-
-        self.sender.as_ref().unwrap().send(job).unwrap();
-    }
-}
-
 impl Drop for ThreadPool {
     fn drop(&mut self) {
         drop(self.sender.take());
