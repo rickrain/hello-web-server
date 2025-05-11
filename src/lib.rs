@@ -105,3 +105,20 @@ impl Worker {
         Worker { id, thread }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn create_new_thread_pool() {
+        let thread_pool = ThreadPool::new(5);
+        assert!(thread_pool.is_ok());
+    }
+
+    #[test]
+    fn create_new_thread_pool_error() {
+        let thread_pool = ThreadPool::new(0);
+        assert!(thread_pool.is_err());
+    }
+}
