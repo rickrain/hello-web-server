@@ -15,7 +15,11 @@ fn main() {
     for stream in listener.incoming().take(10) {
         let stream = stream.unwrap();
 
-        thread_pool.execute(|| handle_connection(stream));
+        if let Ok(tp) = &thread_pool {
+            tp.execute(|| handle_connection(stream));
+        } else {
+            break;
+        }
     }
 
     println!("Shutting down.");
